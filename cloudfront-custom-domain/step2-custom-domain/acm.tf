@@ -1,8 +1,8 @@
 # =============================================================================
-# ACM Certificate (us-east-1)
+# ACM Certificate (us-east-1) — NEW in Step 2
 # =============================================================================
 # CloudFront requires the certificate to be in us-east-1.
-# DNS validation is used to prove domain ownership automatically.
+# DNS validation automatically proves domain ownership via Route 53.
 
 resource "aws_acm_certificate" "this" {
   provider = aws.us_east_1
@@ -19,7 +19,7 @@ resource "aws_acm_certificate" "this" {
   }
 }
 
-# DNS validation records — Route 53 に CNAME を作成して証明書の所有権を証明
+# DNS validation records in Route 53
 resource "aws_route53_record" "cert_validation" {
   for_each = {
     for dvo in aws_acm_certificate.this.domain_validation_options : dvo.domain_name => {
@@ -37,7 +37,7 @@ resource "aws_route53_record" "cert_validation" {
   allow_overwrite = true
 }
 
-# Wait for the certificate to be validated
+# Wait for certificate validation to complete
 resource "aws_acm_certificate_validation" "this" {
   provider = aws.us_east_1
 

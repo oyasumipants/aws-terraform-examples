@@ -4,6 +4,12 @@ variable "aws_region" {
   default     = "ap-northeast-1"
 }
 
+variable "project_name" {
+  description = "Project name (must match Step 1)"
+  type        = string
+  default     = "cf-handson"
+}
+
 variable "domain_name" {
   description = "Custom domain name for CloudFront (e.g., app.example.com)"
   type        = string
@@ -12,10 +18,4 @@ variable "domain_name" {
 variable "hosted_zone_id" {
   description = "Route 53 Hosted Zone ID for the domain"
   type        = string
-}
-
-variable "project_name" {
-  description = "Project name used for resource naming"
-  type        = string
-  default     = "cloudfront-custom-domain"
 }

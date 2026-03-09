@@ -1,9 +1,9 @@
 # =============================================================================
-# Route 53 ALIAS Record — Custom Domain: Requirement 1
+# Route 53 ALIAS Record — NEW in Step 2
 # =============================================================================
-# ALIAS record points the custom domain to CloudFront.
-# Unlike CNAME, ALIAS resolves to IP addresses directly and can be used
-# at the zone apex (e.g., example.com).
+# Points the custom domain to the CloudFront distribution.
+# ALIAS is Route 53 specific — resolves to IP directly (unlike CNAME).
+# Can be used at the zone apex (e.g., example.com).
 
 resource "aws_route53_record" "cloudfront_alias" {
   zone_id = var.hosted_zone_id

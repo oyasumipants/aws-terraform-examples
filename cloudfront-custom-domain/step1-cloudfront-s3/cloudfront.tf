@@ -1,20 +1,9 @@
 # =============================================================================
-# S3 Origin Bucket
+# CloudFront Distribution (default domain only)
 # =============================================================================
-
-data "aws_caller_identity" "current" {}
-
-resource "aws_s3_bucket" "origin" {
-  bucket = "${var.project_name}-origin-${data.aws_caller_identity.current.account_id}"
-
-  tags = {
-    Name = "${var.project_name}-origin"
-  }
-}
-
-# =============================================================================
-# CloudFront Distribution
-# =============================================================================
+# At this stage, no custom domain is configured.
+# Access is via the CloudFront domain: d1234.cloudfront.net
+# The default *.cloudfront.net SSL certificate is used automatically.
 
 resource "aws_cloudfront_origin_access_control" "this" {
   name                              = "${var.project_name}-oac"
@@ -28,16 +17,11 @@ resource "aws_cloudfront_distribution" "this" {
   default_root_object = "index.html"
   comment             = "${var.project_name} distribution"
 
-  # --- Custom Domain: Requirement 2 & 3 ---
-  aliases = [var.domain_name]
-
+  # No aliases, no custom certificate — uses default *.cloudfront.net
   viewer_certificate {
-    acm_certificate_arn      = aws_acm_certificate_validation.this.certificate_arn
-    ssl_support_method       = "sni-only"
-    minimum_protocol_version = "TLSv1.2_2021"
+    cloudfront_default_certificate = true
   }
 
-  # --- Origin ---
   origin {
     domain_name              = aws_s3_bucket.origin.bucket_regional_domain_name
     origin_id                = "s3-origin"

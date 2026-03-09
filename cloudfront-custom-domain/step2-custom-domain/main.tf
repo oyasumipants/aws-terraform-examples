@@ -1,15 +1,19 @@
 # =============================================================================
-# CloudFront + Route 53 + ACM Custom Domain Setup
+# Step 2: Add Custom Domain to CloudFront
 # =============================================================================
+#
+# This step adds a custom domain to the CloudFront distribution from Step 1.
+# After applying, you can access the site via your own domain (e.g., app.example.com).
+#
+# What changes from Step 1:
+#   - ACM certificate created in us-east-1
+#   - DNS validation records in Route 53
+#   - CloudFront aliases + viewer_certificate updated
+#   - Route 53 ALIAS record pointing to CloudFront
 #
 # Architecture:
 #   Browser -> Route 53 (ALIAS) -> CloudFront -> S3 (Origin)
 #              ACM cert (us-east-1) validates the custom domain
-#
-# 3 requirements for CloudFront custom domains:
-#   1. ACM certificate in us-east-1 (ISSUED status)
-#   2. CloudFront Alternate Domain Name (aliases)
-#   3. CloudFront viewer_certificate referencing the ACM cert
 # =============================================================================
 
 terraform {
@@ -23,7 +27,6 @@ terraform {
   }
 }
 
-# Default provider
 provider "aws" {
   region = var.aws_region
 }
