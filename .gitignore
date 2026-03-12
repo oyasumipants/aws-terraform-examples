@@ -17,5 +17,8 @@ override.tf.json
 .env
 .env.*
 
+# Diagram intermediate files
+**/images/*.html
+
 # OS
 .DS_Store

@@ -1,0 +1,225 @@
+/* @theme aws-seminar */
+
+@import 'default';
+
+:root {
+  /* AWS風の2色: ダークネイビー + オレンジ */
+  --color-base: #232F3E;
+  --color-accent: #FF9900;
+  --color-bg: #FFFFFF;
+  --color-text: #232F3E;
+  --color-light: #F5F5F5;
+  --color-muted: #687078;
+}
+
+section {
+  font-family: 'Noto Sans JP', 'Helvetica Neue', Arial, sans-serif;
+  color: var(--color-text);
+  background: var(--color-bg);
+  padding: 60px 80px;
+  text-align: left;
+  justify-content: flex-start;
+}
+
+/* タイトルスライド */
+section.title {
+  background: var(--color-base);
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+section.title h1 {
+  color: var(--color-accent);
+  font-size: 1.8em;
+  border: none;
+}
+
+section.title p {
+  color: #AABBCC;
+  font-size: 1.1em;
+}
+
+/* セクション区切り */
+section.section {
+  background: var(--color-base);
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+section.section h1 {
+  color: var(--color-accent);
+  font-size: 1.8em;
+  border: none;
+}
+
+/* 見出し */
+h1 {
+  font-size: 1.8em;
+  font-weight: 700;
+  color: var(--color-base);
+  border-bottom: 3px solid var(--color-accent);
+  padding-bottom: 8px;
+  margin-bottom: 24px;
+}
+
+h2 {
+  font-size: 1.6em;
+  font-weight: 700;
+  color: var(--color-base);
+  border-bottom: 3px solid var(--color-accent);
+  padding-bottom: 8px;
+  margin-bottom: 24px;
+}
+
+/* 本文: 大きめフォント */
+p, li {
+  font-size: 1.15em;
+  line-height: 1.6;
+}
+
+/* 強調 */
+strong {
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+/* テーブル */
+table {
+  font-size: 0.95em;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  background: var(--color-base);
+  color: #FFFFFF;
+  padding: 10px 16px;
+  text-align: left;
+}
+
+td {
+  padding: 10px 16px;
+  border-bottom: 1px solid #E0E0E0;
+}
+
+tr:nth-child(even) td {
+  background: var(--color-light);
+}
+
+/* コードブロック */
+pre {
+  background: #1B2836;
+  border-radius: 8px;
+  padding: 24px 28px;
+  font-size: 0.78em;
+  line-height: 1.7;
+  overflow-x: auto;
+}
+
+pre code {
+  color: #E8E8E8;
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+  letter-spacing: 0.02em;
+}
+
+/* コードブロック内コメント風の色分け（Marp は highlight.js を使う） */
+pre code .hljs-comment {
+  color: #6A9955;
+}
+
+code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+}
+
+/* インラインコード */
+p code, li code, td code {
+  background: var(--color-light);
+  color: var(--color-base);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+/* ページ番号 */
+section::after {
+  color: var(--color-muted);
+  font-size: 0.7em;
+}
+
+/* blockquote（引用） */
+blockquote {
+  border-left: 4px solid var(--color-accent);
+  background: #FFF8EE;
+  padding: 12px 20px;
+  margin: 16px 0;
+  font-style: normal;
+}
+
+blockquote p {
+  margin: 0;
+}
+
+/* 構成図画像 */
+section img[alt*="構成図"] {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  max-height: 400px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* 試験問題風スライド */
+section.exam {
+  background: #FFFFFF;
+  padding: 40px 60px;
+  font-size: 0.85em;
+}
+
+section.exam h2 {
+  display: none;
+}
+
+.exam-header {
+  font-size: 0.95em;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.exam-body {
+  font-size: 0.95em;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.exam-question {
+  font-size: 0.95em;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.exam-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.exam-option {
+  font-size: 0.9em;
+  line-height: 1.6;
+  color: #333;
+  padding: 14px 20px;
+  border-top: 1px solid #E0E0E0;
+  cursor: default;
+}
+
+.exam-option:last-child {
+  border-bottom: 1px solid #E0E0E0;
+}
